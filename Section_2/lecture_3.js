@@ -1,80 +1,75 @@
-const delay = (ms) => {
-    return new Promise((resolve) => {
-        setTimeout(()=>{
-            resolve('3초가 지났습니다.');
-        },ms);
-    });
-};
+//typeof
+// let num = 10;
+// console.log(typeof num);
 
-//async는 비동기 작업을 할때 사용 => 코드를 직관적으로 해석 가능
-//async는 자동으로 promise 객체를 반환함
-//delay를 호출하는 start 함수
-// const start = async () => {
-//     // delay(3000).then((res)=>{
-//     //     console.log(res);
-//     // });
+//원시형 타입
+//Primitive data type
 
-//     // //await => promise를 기다렸다가 처리함
-//     // //promise의 then 보다 가독성 좋게 작성 가능
-//     // //await은 asunc가 있는 함숫 내부에서만 사용 가능
-//     // let result = await delay(3000);
-//     // console.log(result);
+//숫자형
+// let num1 = 125;
+// let num2 = 10.000012;
+// console.log(num1);
+// console.log(num2);
 
-//     try{
-//         let result = await delay(3000);
-//         console.log(result);
-//     }catch(error){
-//         console.log(error);
-//     }
-// };
+let num = Infinity;
+num = 100 / 0;
+console.log(num); //Infinity
+console.log(typeof num); //num
 
-// start();
+let number = NaN;
+console.log(typeof number);
 
+let number1 = 'javascript' / 10;
+console.log(number1); //NaN ==> Not a Number
 
-const workA = () => {
-    return new Promise((resolve) =>{
-        setTimeout(()=>{
-            resolve('workA');
-        }, 5000);
-    })
-}
-const workB = () => {
-    return new Promise((resolve) =>{
-        setTimeout(()=>{
-            resolve('workB');
-        }, 3000);
-    })
-}
-const workC = () => {
-    return new Promise((resolve) =>{
-        setTimeout(()=>{
-            resolve('workC');
-        }, 10000);
-    })
+//BigInt
+let bigNum1 = 99999999999999999999999999999n;
+let bigNum2 = BigInt("99999999999999999999999999999");
+console.log(typeof bigNum1); //bigint
+console.log(typeof bigNum2); //bigint
+
+//string
+// let name = "younjae";
+let name = 'younjae';
+//템플릿 리터럴
+let intro = `제 이름은 ${name}입니다.`;
+console.log(typeof intro);
+
+//boolean
+//true / false
+let isClicked = false;
+if (isClicked){
+    console.log('클릭 O');
+}else{
+    console.log('클릭 X');
 }
 
-const start = async() => {
-    try{
-        // let resultA = await workA();
-        // let resultB = await workB();
-        // let resultC = await workC();
-        // console.log(resultA);
-        // console.log(resultB);
-        // console.log(resultC);
+//Null
+//존재X, 알 수 없는 값
+let nnum = null;
+console.log(nnum === null);
 
-        let results = await Promise.all([workA(),workB(),workC()]);
-        results.forEach(res => console.log(res));
-    }catch(err){
-        console.log(err);
-    }
+//Undefined
+//변수에 값이 할당되지 않은 상태
+let nu;
+console.log(typeof nu);
 
-};
+//동적 타입 언어
+let Num = '100';
+console.log(typeof Num);
+Num = 10;
+console.log(typeof Num);
 
-start();
-//workA
-//workB
-//workC
+//묵시적 형 변환
+//자료형이 자동으로 변환한 것
+// let num1 = '15';
+// let num2 = 5;
+// console.log(num1/num2); // 3
 
+//명시적 형 변환
+//의도적으로 자료형을 변환시킨 것
+let num1 = '15';
+let num2 = 5;
+console.log(num1 + num2); //155
+console.log(parseInt(num1)+num2); //20
 
-//promise all은 여러 개의 프로미스를 병렬로 실행하고 모든 프로미스가 완료될 때까지 기다렸다가 한번에 반환
-//하나라도 실패하면 즉시 실패로 간주하여 오류 출력

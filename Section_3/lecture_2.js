@@ -1,40 +1,53 @@
-// let $color = document.getElementById('color');
-// console.log($color);
+const executor = (reseolve, reject) =>{
+    setTimeout(()=>{
+        reseolve('성공');
+        reject('실패');
+    },3000);
+};
 
-// let $animalInfo = document.querySelector('div.animal-info');
-// let ageElement = document.querySelector('div#age');
-// console.log($animalInfo);
-// console.log(ageElement);
+const promise = new Promise(executor);
 
-// let $infoItem = document.querySelectorAll('div.info-item');
-// console.log($infoItem);
+// promise.then(
+//     (result)=>{console.log(result)}, 
+//     (error)=>{console.log(error)}
+// );
 
-// let $infoItem = document.getElementsByClassName('info-item');
-// console.log($infoItem);
+promise
+    .then((result)=>{
+        console.log(result);
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
+//promise를 사용하는 이유?
+//js의 콜백지옥을 해결하기 위함.
 
-// let $infoItem = document.getElementsByTagName('div');
-// console.log($infoItem);
+//콜백지옥이란?
+const workA = (value, callback) => {
+    setTimeout(()=>{
+        callback(value + 5);
+    }, 5000);
+}
+const workB = (value, callback) => {
+    setTimeout(()=>{
+        callback(value - 3);
+    }, 3000);
+}
+const workC = (value, callback) => {
+    setTimeout(()=>{
+        callback(value + 10);
+    }, 10000);
+}
 
-
-// let $name = document.getElementById('name');
-// $name.className = 'dog-name';
-// console.log($name);
-// console.log($name.className);
-
-// let $animalInfo = document.querySelector('div.animal-info');
-// $animalInfo.id = 'animal';
-// console.log($animalInfo);
-// console.log($animalInfo.id);
-
-// let $color = document.getElementById('color');
-// $color.classList.remove('info-item');
-// $color.classList.add('dog-color');
-// console.log($color);
-
-// let $age = document.getElementById('age');
-// $age.textContent = '5살';
-// console.log($age);
-
-let $color = document.getElementById('color');
-$color.style.color = 'blue';
-$color.style.fontSize = '30px';
+workA(10, (resA)=>{
+    console.log(`workA: ${resA}`);
+    workB(resA, (resB)=>{
+        console.log(`workB: ${resB}`);
+        workC(resB, (resC)=>{
+            console.log(`workC: ${resC}`);
+        })
+    });
+});
+//workA: 15
+//workB: 12
+//workC: 22

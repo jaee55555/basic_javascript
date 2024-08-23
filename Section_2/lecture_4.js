@@ -1,36 +1,83 @@
-//API란?
-//웹브라우저는 API를 사용해서 웹사이트에 필요한 데이터를 요청하고 전달받는다.
+//산술 연산자
+let num1 = 10;
+let num2 = 5;
+console.log(num1 + num2);
+console.log(num1 - num2);
+console.log(num1 * num2);
+console.log(num1 / num2);
 
-//JSON(Javascript Object Notation)
-//자바스크립트 객체 표기법 => 데이터를 문자열 형태로 형태로 나타냄
+console.log(num1 % num2); //나머지 연산
+console.log(num1 % 2);
+console.log(num2 % 2);
 
-// let response = fetch('https://jsonplaceholder.typicode.com/users')
-//     .then((res)=>console.log(res))
-//     .catch((err)=>console.log(err));
-// console.log(response);
+console.log(num1++); //10
+console.log(num1);   //11
+console.log(++num1); //12
 
-// const getData = async() => {
-//     let response = await fetch('https://jsonplaceholder.typicode.com/users');
+console.log(num1--); //12
+console.log(num1);   //11
+console.log(--num1); //10
 
-//     //위에 있는 fetch는 비동기 함수이기 때문에, 
-//     //모든 동작이 끝나고 데이터를 받아오기 위해서 data도 await으로 받아온다.
-//     let data = await response.json();
-//     console.log(response);
-//     console.log(data);
-// };
+console.log("========================")
+
+//대입 연산자
+let num = 10;
+// num = num + 5;
+num += 5;
+console.log(num);
+
+//비교 연산자
+//일치
+let num11 = 10;
+let num22 = '10';
+console.log(num11 === num22);
+console.log(num11 == num22);
+//불일치
+console.log(num11 !== num22);
+console.log(num11 != num22);
+
+let a = 10;
+let b = 20;
+let c = 10;
+console.log(a<b);
+console.log(a>b);
+console.log(b >= c);
+console.log(a > c);
+
+//연결 연산자
+let price = 10000;
+console.log("가격: "+price+"원");
+console.log("========================")
+//논리 연산자
+// true false
+// NOT OR AND
+
+//NOT
+let isClicked = true;
+let isOpend = false;
+console.log(!isClicked);
+console.log(!isOpend);
+//OR
+console.log(true||true);
+console.log(true||false);
+console.log(false||true);
+console.log(false||false);
+//AND
+console.log(true&&true);
+console.log(true&&false);
+console.log(false&&true);
+console.log(false&&false);
 
 
-//async와 await 활용
-const getData = async() => {
-    try{
-    let response = await fetch('https://jsonplaceholder.typicode.com/users');
+//Null 병합 연산자
+// A ?? B
+let num10;
+let num20 = 10;
+console.log(num10 ?? 20);
+console.log(num20 ?? 20);
 
-    //위에 있는 fetch는 비동기 함수이기 때문에, 
-    //모든 동작이 끝나고 데이터를 받아오기 위해서 data도 await으로 받아온다.
-    let data = await response.json(); //데이터 값을 배열로 받아옴
-    console.log(data);
-    }catch(err){
-    console.log(response);
-    }
-};
-getData();
+//삼항 연산자
+// A ? B : C
+let numm = 100;
+let result = numm % 2 === 0 ? "짝수" : "홀수";
+console.log(result);
